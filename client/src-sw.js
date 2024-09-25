@@ -20,7 +20,7 @@ const pageCache = new CacheFirst({
 });
 
 warmStrategyCache({
-  urls: ['/index.html', '/'],
+  urls: ['./index.html', '/'],
   strategy: pageCache,
 });
 
@@ -41,8 +41,12 @@ registerRoute(
       }),
     ],
   })
+); // <-- Missing closing bracket added here
+
+offlineFallback(
+  {
+    pageFallback: '/index.html',
+    imageFallback: '/assets/images/fallback.png',
+    fontFallback: '/assets/fonts/fallback.woff',
+  }
 );
-
-offlineFallback();
-
-
