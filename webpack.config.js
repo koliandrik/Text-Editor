@@ -1,7 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const path = require('path');
-const { InjectManifest } = require('clean-webpack-plugin');
+const { InjectManifest } = require('workbox-webpack-plugin');
 
 module.exports = () => {
   return {
@@ -20,7 +20,7 @@ module.exports = () => {
         title: 'Text-Editor'
       }),
       new InjectManifest({
-        swSrc: './client/service-worker.js',
+        swSrc: './client/src-sw.js',
         swDest: 'src.sw.js',
       }),
       new WebpackPwaManifest({
