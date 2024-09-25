@@ -41,7 +41,7 @@ registerRoute(
       }),
     ],
   })
-); // <-- Missing closing bracket added here
+);
 
 offlineFallback(
   {
