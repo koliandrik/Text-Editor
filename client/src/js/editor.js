@@ -28,14 +28,11 @@ export default class {
       console.info('Loaded data from IndexedDB, injecting into editor');
       this.editor.setValue(data[0].value);
     }
-    ).catch((error) => {
-      console.error('Error loading data from IndexedDB, falling back to localStorage');
-      if (localData) {
-        this.editor.setValue(localData);
-      } else {
-        this.editor.setValue(header);
-      }
+    ).catch(() => {
+      console.info('No data found in IndexedDB, falling back to localStorage');
+      this.editor.setValue(localData || header);
     });
+
 
     this.editor.on('change', () => {
       localStorage.setItem('content', this.editor.getValue());
