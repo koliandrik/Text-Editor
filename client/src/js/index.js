@@ -27,6 +27,14 @@ if (typeof editor === 'undefined') {
 if ('serviceWorker' in navigator) {
   // register workbox service worker
   const wb = new Workbox('/src-sw.js');
+  wb.register();
+  wb.addEventListener('activated', (event) => {
+    if (!event.isUpdate) {
+      console.log('Service worker activated for the first time!');
+    } else {
+      console.log('Service worker activated again!');
+    }
+  });
 } else {
   console.error('Service workers are not supported in this browser.');
 }
